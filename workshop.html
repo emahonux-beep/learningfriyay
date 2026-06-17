@@ -20,6 +20,7 @@
   input[type=range].cv-slider{-webkit-appearance:none;appearance:none;height:10px;border-radius:999px;background:linear-gradient(90deg,#FF7A59,#FFC23D,#2FBFA8);outline:none;}
   input[type=range].cv-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:34px;height:34px;border-radius:50%;background:#241C18;border:4px solid #fff;cursor:pointer;box-shadow:0 4px 10px rgba(36,28,24,.3);}
   input[type=range].cv-slider::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:#241C18;border:4px solid #fff;cursor:pointer;}
+  @media print{.home-btn,.deck-pdf-btn{display:none!important;}}
 </style>
 </helmet>
 <a href="index.html" class="home-btn" style="position:fixed;top:20px;left:20px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#241C18;background:rgba(255,255,255,.94);border:1px solid rgba(36,28,24,.16);padding:9px 15px 9px 13px;border-radius:999px;text-decoration:none;box-shadow:0 4px 16px rgba(36,28,24,.2);" title="Back to start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>Start</a>
@@ -449,7 +450,7 @@
     <div style="background:#fff;border:2px solid rgba(36,28,24,.08);border-radius:16px;padding:26px 28px;box-shadow:0 10px 22px rgba(36,28,24,.07);display:flex;flex-direction:column;gap:8px;"><div style="font-family:'Space Mono',monospace;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#92400e;font-weight:700;">💬 Forum</div><div style="font-size:25px;font-weight:700;">Figma Community Forum</div><div style="font-size:20px;color:#6B5F57;line-height:1.4;flex:1;">Ask questions, share what you've built.</div><div style="font-family:'Space Mono',monospace;font-size:24px;color:#92400e;background:#FFF7E0;border-radius:8px;padding:8px 12px;align-self:flex-start;">forum.figma.com</div></div>
   </div>
 
-  <div style="margin-top:24px;background:#FF7A59;border-radius:14px;padding:20px 30px;font-size:26px;color:#241C18;display:flex;align-items:center;justify-content:space-between;gap:20px;"><span><strong>Thanks for joining! 🎉</strong> &nbsp;Questions after today? Reach out anytime.</span><span style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;">— Erin Mahon</span></div>
+  <div style="margin-top:24px;background:#FF7A59;border-radius:14px;padding:20px 30px;font-size:26px;color:#241C18;display:flex;align-items:center;justify-content:space-between;gap:20px;"><span><strong>Thanks for joining! 🎉</strong> &nbsp;Questions after today? Reach out anytime.</span><span style="display:flex;align-items:center;gap:16px;flex:none;"><button class="deck-pdf-btn" onClick="{{ savePdf }}" style="display:inline-flex;align-items:center;gap:8px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:20px;color:#C2410C;background:#fff;border:none;padding:12px 20px;border-radius:999px;cursor:pointer;box-shadow:0 6px 16px rgba(36,28,24,.2);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Save as PDF</button><span style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;">— Erin Mahon</span></span></div>
 </section>
 </x-import>
 </x-dc>
@@ -511,6 +512,7 @@ class Component extends DCLogic {
 
     const isSheet = s.varCount >= 20;
     return {
+      savePdf: () => window.print(),
       medName: s.medName || ' ',
       medStrength: s.medStrength || ' ',
       medForm: s.medForm || ' ',
